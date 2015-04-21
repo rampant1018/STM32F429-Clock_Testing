@@ -52,3 +52,22 @@ PLL_N = 192
 PLL_P = 8
 PLL_Q = 7
 ```
+
+Flash
+=====
+According to ST reference Manual RM0090 Section 3.4.1, latency of flash memory should be set depending on cpu clock frequency. So if you speed up the PLL clock frequency, you should check the latency is set correctly.
+For example, if use the following settings for PLL used HSE as source:
+```
+PLL_M = 8
+PLL_N = 336
+PLL_P = 2
+PLL_Q = 7
+==> f(PLL general clock ouput) = 168MHz
+```
+Then the flash latency should be 5 wait states(WS).
+
+SysTick
+=======
+`SysTick` will be triggered every 500ms in the default settings. There are two source you can choose for `SysTick`:
+* external clock => Cortex System timer(HCLK / 8)
+* processor clock => HCLK
