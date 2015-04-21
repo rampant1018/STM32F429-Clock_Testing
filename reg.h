@@ -82,6 +82,20 @@ typedef struct {
 #define FLASH   ((FLASH_TypeDef *) (uint32_t)0x40023C00)
 #define SYSTICK ((SYSTICK_TypeDef *) (uint32_t)0xE000E010)
 
+/*******************  Bits definition for FLASH_ACR register  *****************/
+#define FLASH_ACR_LATENCY                    ((uint32_t)0x00000007)
+#define FLASH_ACR_LATENCY_0WS                ((uint32_t)0x00000000)
+#define FLASH_ACR_LATENCY_1WS                ((uint32_t)0x00000001)
+#define FLASH_ACR_LATENCY_2WS                ((uint32_t)0x00000002)
+#define FLASH_ACR_LATENCY_3WS                ((uint32_t)0x00000003)
+#define FLASH_ACR_LATENCY_4WS                ((uint32_t)0x00000004)
+#define FLASH_ACR_LATENCY_5WS                ((uint32_t)0x00000005)
+#define FLASH_ACR_LATENCY_6WS                ((uint32_t)0x00000006)
+#define FLASH_ACR_LATENCY_7WS                ((uint32_t)0x00000007)
+
+#define FLASH_ACR_ICEN                       ((uint32_t)0x00000200)
+#define FLASH_ACR_DCEN                       ((uint32_t)0x00000400)
+
 /********************  Bit definition for RCC_CR register  ********************/
 #define RCC_CR_HSION            ((uint32_t)0x00000001)
 #define RCC_CR_HSIRDY           ((uint32_t)0x00000002)

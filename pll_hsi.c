@@ -32,7 +32,7 @@ void rcc_clock_init(void)
 	while((RCC->CR & RCC_CR_PLLRDY) == 0);
 
 	/* Configure Flash prefetch, Instruction cache, Data cache and wait state */
-	//FLASH->ACR = FLASH_ACR_ICEN |FLASH_ACR_DCEN |FLASH_ACR_LATENCY_5WS;
+	FLASH->ACR = FLASH_ACR_ICEN | FLASH_ACR_DCEN | FLASH_ACR_LATENCY_0WS;
 
 	/* Select the main PLL as system clock source */
 	RCC->CFGR &= ~RCC_CFGR_SW;
