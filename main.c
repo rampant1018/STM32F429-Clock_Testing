@@ -1,0 +1,35 @@
+#include "common.h"
+#include "reg.h"
+
+int main(void)
+{
+	rcc_clock_init();
+
+	/* Set PA8 for MCO1 function */
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+	GPIOA->MODER = GPIO_MODER8_ALTERNATE;
+	GPIOA->OTYPER = GPIO_OTYPER8_PP;
+	GPIOA->OSPEED = GPIO_OSPEED8_100MHZ;
+	GPIOA->PUPDR = GPIO_PUPDR8_NO;
+	GPIOA->AFRH = GPIO_AFRH8_AF0;
+
+	/* Set PC9 as MCO2 function */
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
+	GPIOC->MODER = GPIO_MODER9_ALTERNATE;
+	GPIOC->OTYPER = GPIO_OTYPER9_PP;
+	GPIOC->OSPEED = GPIO_OSPEED9_100MHZ;
+	GPIOC->PUPDR = GPIO_PUPDR9_NO;
+	GPIOC->AFRH = GPIO_AFRH9_AF0;
+
+	init_mco1();
+
+	/* Set MCO2, select SYSCLK as output source and no division */
+	RCC->CFGR &= ~RCC_CFGR_MCO2;
+	RCC->CFGR |= RCC_CFGR_MCO2_SYSCLK;
+	RCC->CFGR &= ~RCC_CFGR_MCO2_PRE;
+	RCC->CFGR |= RCC_CFGR_MCO2_PRE_DIV1;
+
+	while(1);
+
+	return 0;
+}
