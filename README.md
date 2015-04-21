@@ -1,6 +1,7 @@
 Clock_Testing on STM32F429-Discovery
 ==================================
 This project is target for rcc settings on stm32f429-discovery development board.
+You can find more test data in [Hackpad - Clock-Testing on STM32F429](https://hackpad.com/Clock-Testing-on-STM32F429-cDTpY6JkEVV).
 
 Instructions
 ============
