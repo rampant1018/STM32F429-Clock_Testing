@@ -1,4 +1,4 @@
-RCC_Testing on STM32F429-Discovery
+Clock_Testing on STM32F429-Discovery
 ==================================
 This project is target for rcc settings on stm32f429-discovery development board.
 
