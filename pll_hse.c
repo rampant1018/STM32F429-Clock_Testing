@@ -44,9 +44,16 @@ void rcc_clock_init(void)
 
 void init_mco1(void)
 {
-	/* Set MCO1, select HSE as output source and no division */
+	/* Set MCO1, select PLL as output source and division by 2 */
 	RCC->CFGR &= ~RCC_CFGR_MCO1;
 	RCC->CFGR |= RCC_CFGR_MCO1_PLL;
 	RCC->CFGR &= ~RCC_CFGR_MCO1_PRE;
 	RCC->CFGR |= RCC_CFGR_MCO1_PRE_DIV2;
+}
+
+void init_systick(void)
+{
+	SYSTICK->RVR = 0xB71AFF; // 11999999 (~= 12000000)
+	SYSTICK->CVR = 0x0;
+	SYSTICK->CSR = 0x7;
 }

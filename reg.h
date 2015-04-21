@@ -167,22 +167,27 @@ typedef struct {
 /********************  Bit definition for RCC_AHB1ENR register  ***************/
 #define RCC_AHB1ENR_GPIOAEN     ((uint32_t)0x00000001)
 #define RCC_AHB1ENR_GPIOCEN     ((uint32_t)0x00000004)
+#define RCC_AHB1ENR_GPIOGEN     ((uint32_t)0x00000040)
 
 /********************  Bit definition for GPIO_MODER register  ****************/
 #define GPIO_MODER8_ALTERNATE	((uint32_t)0x00020000)
 #define GPIO_MODER9_ALTERNATE   ((uint32_t)0x00080000)
+#define GPIO_MODER13_OUTPUT     ((uint32_t)0x04000000)
 
 /********************  Bit definition for GPIO_OTYPER register  ***************/
 #define GPIO_OTYPER8_PP         ((uint32_t)0x00000000)
 #define GPIO_OTYPER9_PP         ((uint32_t)0x00000000)
+#define GPIO_OTYPER13_PP        ((uint32_t)0x00000000)
 
 /********************  Bit definition for GPIO_OSPEED register  ***************/
 #define GPIO_OSPEED8_100MHZ	((uint32_t)0x00030000)
 #define GPIO_OSPEED9_100MHZ	((uint32_t)0x000C0000)
+#define GPIO_OSPEED13_100MHZ    ((uint32_t)0x0C000000)
 
 /********************  Bit definition for GPIO_PUPDR register  ****************/
 #define GPIO_PUPDR8_NO          ((uint32_t)0x00000000)
 #define GPIO_PUPDR9_NO          ((uint32_t)0x00000000)
+#define GPIO_PUPDR13_NO         ((uint32_t)0x00000000)
 
 /********************  Bit definition for GPIO_AFRH register  *****************/
 #define GPIO_AFRH8_AF0          ((uint32_t)0x00000000)

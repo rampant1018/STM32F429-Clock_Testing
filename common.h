@@ -3,5 +3,6 @@
 
 void rcc_clock_init(void);
 void init_mco1(void);
+void init_systick(void);
 
 #endif

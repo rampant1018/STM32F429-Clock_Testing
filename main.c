@@ -1,6 +1,19 @@
 #include "common.h"
 #include "reg.h"
 
+void __attribute__((interrupt)) systick_handler(void) {
+	static int on = 0;
+
+	if(!on) {
+		GPIOG->BSRR = (1 << 13);
+		on = 1;
+	}
+	else {
+		GPIOG->BSRR = (1 << 29);
+		on = 0;
+	}
+}
+
 int main(void)
 {
 	rcc_clock_init();
@@ -21,6 +34,7 @@ int main(void)
 	GPIOC->PUPDR = GPIO_PUPDR9_NO;
 	GPIOC->AFRH = GPIO_AFRH9_AF0;
 
+	/* Set MCO1, depends on which rcc you used */
 	init_mco1();
 
 	/* Set MCO2, select SYSCLK as output source and no division */
@@ -28,6 +42,16 @@ int main(void)
 	RCC->CFGR |= RCC_CFGR_MCO2_SYSCLK;
 	RCC->CFGR &= ~RCC_CFGR_MCO2_PRE;
 	RCC->CFGR |= RCC_CFGR_MCO2_PRE_DIV1;
+
+	/* Set PG13 as general output function(LED) */
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOGEN;
+	GPIOG->MODER = GPIO_MODER13_OUTPUT;
+	GPIOG->OTYPER = GPIO_OTYPER13_PP;
+	GPIOG->OSPEED = GPIO_OSPEED13_100MHZ;
+	GPIOG->PUPDR = GPIO_PUPDR13_NO;
+
+	/* Set SysTick, trigger every 500ms */
+	init_systick();
 
 	while(1);
 

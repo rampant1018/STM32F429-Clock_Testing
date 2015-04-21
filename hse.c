@@ -25,3 +25,10 @@ void init_mco1(void)
 	RCC->CFGR &= ~RCC_CFGR_MCO1_PRE;
 	RCC->CFGR |= RCC_CFGR_MCO1_PRE_DIV1;
 }
+
+void init_systick(void)
+{
+	SYSTICK->RVR = 0x3D08FF; // 3999999 (~= 4000000)
+	SYSTICK->CVR = 0x0;
+	SYSTICK->CSR = 0x7;
+}
